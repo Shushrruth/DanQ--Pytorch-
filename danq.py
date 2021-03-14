@@ -27,8 +27,8 @@ class Net(nn.Module):
                                  bidirectional = True)
     
         self.Linear1 = nn.Linear(320*320*2, 925)
-        self.Linear2 = nn.Linear(925, 919)
-        self.Linear3 = nn.Linear(919,1)
+        self.Linear2 = nn.Linear(925, 1)
+        
 
     def forward(self, input):
         x = self.Conv(input)
@@ -40,8 +40,6 @@ class Net(nn.Module):
         x = self.Linear1(x)
         x = F.relu(x)
         x = self.Linear2(x)
-        x = F.relu(x)
-        x = self.Linear3(x)
         x = torch.sigmoid(x)
 
         return x 
